@@ -24,7 +24,4 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 3000
-        livenessProbe:
-            httpGet:
-              path: /healthz
 
