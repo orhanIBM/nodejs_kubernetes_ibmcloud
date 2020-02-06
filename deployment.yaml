@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-express
+  labels: 
+    app: web-express
+    stages: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-express
+  template:
+    metadata:
+      labels:
+        app: web-express
+    spec:
+      containers:
+      - name: web-express
+        image: us.icr.io/orhan/web:v1.0.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+            httpGet:
+              path: /healthz
+
